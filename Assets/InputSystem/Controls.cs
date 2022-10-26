@@ -35,6 +35,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Value"",
+                    ""id"": ""2908872d-ae23-4fff-8272-ffc0f1d9addb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -70,6 +79,17 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""MoveX"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2dff8119-04c5-4add-b1b6-c22df4f29464"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -79,6 +99,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         // PC
         m_PC = asset.FindActionMap("PC", throwIfNotFound: true);
         m_PC_MoveX = m_PC.FindAction("MoveX", throwIfNotFound: true);
+        m_PC_Jump = m_PC.FindAction("Jump", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -139,11 +160,13 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_PC;
     private IPCActions m_PCActionsCallbackInterface;
     private readonly InputAction m_PC_MoveX;
+    private readonly InputAction m_PC_Jump;
     public struct PCActions
     {
         private @Controls m_Wrapper;
         public PCActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @MoveX => m_Wrapper.m_PC_MoveX;
+        public InputAction @Jump => m_Wrapper.m_PC_Jump;
         public InputActionMap Get() { return m_Wrapper.m_PC; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -156,6 +179,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @MoveX.started -= m_Wrapper.m_PCActionsCallbackInterface.OnMoveX;
                 @MoveX.performed -= m_Wrapper.m_PCActionsCallbackInterface.OnMoveX;
                 @MoveX.canceled -= m_Wrapper.m_PCActionsCallbackInterface.OnMoveX;
+                @Jump.started -= m_Wrapper.m_PCActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_PCActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_PCActionsCallbackInterface.OnJump;
             }
             m_Wrapper.m_PCActionsCallbackInterface = instance;
             if (instance != null)
@@ -163,6 +189,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @MoveX.started += instance.OnMoveX;
                 @MoveX.performed += instance.OnMoveX;
                 @MoveX.canceled += instance.OnMoveX;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
             }
         }
     }
@@ -170,5 +199,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     public interface IPCActions
     {
         void OnMoveX(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
     }
 }

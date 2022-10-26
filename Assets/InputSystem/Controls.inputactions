@@ -1,5 +1,5 @@
 {
-    "name": "InputManager",
+    "name": "Controls",
     "maps": [
         {
             "name": "PC",
@@ -10,6 +10,15 @@
                     "type": "Value",
                     "id": "24995cd8-459b-43b4-90b9-497aca4b026a",
                     "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Jump",
+                    "type": "Value",
+                    "id": "2908872d-ae23-4fff-8272-ffc0f1d9addb",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -48,6 +57,17 @@
                     "action": "MoveX",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "2dff8119-04c5-4add-b1b6-c22df4f29464",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
