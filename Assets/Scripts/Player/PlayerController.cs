@@ -5,6 +5,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float speed; //speed applied to move formula
     [SerializeField] private LayerMask layerMask; //layer mask to check what raycast collided with
+    [SerializeField] private Animator an; //plaer animator
     [SerializeField] private BoxCollider2D GroundedBoxCollider;
     private Rigidbody2D playerBody; //assigned rigidbody
     private Controls input; //assigned keymaps of inputSystem
@@ -27,11 +28,13 @@ public class PlayerController : MonoBehaviour
         short moveXform = (short)(x * speed * Time.fixedDeltaTime);
 
         if (IsGrounded()) { playerBody.velocity = transform.up * jumpValue * 5f; } // regular jump
-
         playerBody.velocity = new Vector2(moveXform, playerBody.velocity.y); //move formula
 
+        if (moveXform > 0 || moveXform < 0) { an.SetBool("walk", true); }//animation trigger
+        else { an.SetBool("walk", false); }
+
         if (moveXform < 0) { playerBody.transform.localScale = new Vector2(-1, 1); } //changes player direction
-        else { playerBody.transform.localScale = new Vector2(1, 1); }
+        else if(moveXform > 0) { playerBody.transform.localScale = new Vector2(1, 1); }
     }
     private bool IsGrounded() 
     {

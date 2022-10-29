@@ -22,7 +22,7 @@ public class CameraMove : MonoBehaviour
     {
         if (isLocked) return;
 
-        camera.position = new Vector3(Vector3.SmoothDamp(camera.transform.position, target.transform.position, ref velocity, smoothSpeed).x, 0, camera.position.z);
+        camera.position = new Vector3(Vector3.SmoothDamp(camera.transform.position, target.transform.position, ref velocity, smoothSpeed).x, camera.position.y, camera.position.z);
     }
 
     /// <summary> Change setting for camera. </summary>
