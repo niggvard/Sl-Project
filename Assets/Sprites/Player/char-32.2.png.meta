@@ -109,9 +109,9 @@ TextureImporter:
       name: char-32.2_0
       rect:
         serializedVersion: 2
-        x: 2
+        x: 1
         y: 0
-        width: 23
+        width: 25
         height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -130,9 +130,9 @@ TextureImporter:
       name: char-32.2_1
       rect:
         serializedVersion: 2
-        x: 27
+        x: 26
         y: 0
-        width: 23
+        width: 25
         height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -151,9 +151,9 @@ TextureImporter:
       name: char-32.2_2
       rect:
         serializedVersion: 2
-        x: 52
+        x: 51
         y: 0
-        width: 23
+        width: 25
         height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -172,9 +172,9 @@ TextureImporter:
       name: char-32.2_3
       rect:
         serializedVersion: 2
-        x: 78
+        x: 77
         y: 0
-        width: 23
+        width: 25
         height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -193,12 +193,12 @@ TextureImporter:
       name: char-32.2_4
       rect:
         serializedVersion: 2
-        x: 104
+        x: 103
         y: 0
-        width: 23
+        width: 25
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
