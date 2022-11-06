@@ -35,15 +35,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""Jump"",
-                    ""type"": ""Button"",
-                    ""id"": ""2908872d-ae23-4fff-8272-ffc0f1d9addb"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -79,17 +70,56 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""MoveX"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
-                },
+                }
+            ]
+        },
+        {
+            ""name"": ""Xbox"",
+            ""id"": ""23e4ab36-bd2c-4329-b5fc-d44cbc77e01a"",
+            ""actions"": [
                 {
-                    ""name"": """",
-                    ""id"": ""2dff8119-04c5-4add-b1b6-c22df4f29464"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""name"": ""MoveX"",
+                    ""type"": ""Value"",
+                    ""id"": ""8f2cf601-8860-4007-b836-bfe8609d65e5"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""7180179a-5cb6-4896-b23f-dbc42412bcd4"",
+                    ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
+                    ""action"": ""MoveX"",
+                    ""isComposite"": true,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""767dfc37-befa-4205-b524-9b4c2fb068d4"",
+                    ""path"": ""<XInputController>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveX"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""58c344a8-85c8-4f59-b198-53b68d9a7260"",
+                    ""path"": ""<XInputController>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveX"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -99,7 +129,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         // PC
         m_PC = asset.FindActionMap("PC", throwIfNotFound: true);
         m_PC_MoveX = m_PC.FindAction("MoveX", throwIfNotFound: true);
-        m_PC_Jump = m_PC.FindAction("Jump", throwIfNotFound: true);
+        // Xbox
+        m_Xbox = asset.FindActionMap("Xbox", throwIfNotFound: true);
+        m_Xbox_MoveX = m_Xbox.FindAction("MoveX", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -160,13 +192,11 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_PC;
     private IPCActions m_PCActionsCallbackInterface;
     private readonly InputAction m_PC_MoveX;
-    private readonly InputAction m_PC_Jump;
     public struct PCActions
     {
         private @Controls m_Wrapper;
         public PCActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @MoveX => m_Wrapper.m_PC_MoveX;
-        public InputAction @Jump => m_Wrapper.m_PC_Jump;
         public InputActionMap Get() { return m_Wrapper.m_PC; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -179,9 +209,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @MoveX.started -= m_Wrapper.m_PCActionsCallbackInterface.OnMoveX;
                 @MoveX.performed -= m_Wrapper.m_PCActionsCallbackInterface.OnMoveX;
                 @MoveX.canceled -= m_Wrapper.m_PCActionsCallbackInterface.OnMoveX;
-                @Jump.started -= m_Wrapper.m_PCActionsCallbackInterface.OnJump;
-                @Jump.performed -= m_Wrapper.m_PCActionsCallbackInterface.OnJump;
-                @Jump.canceled -= m_Wrapper.m_PCActionsCallbackInterface.OnJump;
             }
             m_Wrapper.m_PCActionsCallbackInterface = instance;
             if (instance != null)
@@ -189,16 +216,49 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @MoveX.started += instance.OnMoveX;
                 @MoveX.performed += instance.OnMoveX;
                 @MoveX.canceled += instance.OnMoveX;
-                @Jump.started += instance.OnJump;
-                @Jump.performed += instance.OnJump;
-                @Jump.canceled += instance.OnJump;
             }
         }
     }
     public PCActions @PC => new PCActions(this);
+
+    // Xbox
+    private readonly InputActionMap m_Xbox;
+    private IXboxActions m_XboxActionsCallbackInterface;
+    private readonly InputAction m_Xbox_MoveX;
+    public struct XboxActions
+    {
+        private @Controls m_Wrapper;
+        public XboxActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @MoveX => m_Wrapper.m_Xbox_MoveX;
+        public InputActionMap Get() { return m_Wrapper.m_Xbox; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(XboxActions set) { return set.Get(); }
+        public void SetCallbacks(IXboxActions instance)
+        {
+            if (m_Wrapper.m_XboxActionsCallbackInterface != null)
+            {
+                @MoveX.started -= m_Wrapper.m_XboxActionsCallbackInterface.OnMoveX;
+                @MoveX.performed -= m_Wrapper.m_XboxActionsCallbackInterface.OnMoveX;
+                @MoveX.canceled -= m_Wrapper.m_XboxActionsCallbackInterface.OnMoveX;
+            }
+            m_Wrapper.m_XboxActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @MoveX.started += instance.OnMoveX;
+                @MoveX.performed += instance.OnMoveX;
+                @MoveX.canceled += instance.OnMoveX;
+            }
+        }
+    }
+    public XboxActions @Xbox => new XboxActions(this);
     public interface IPCActions
     {
         void OnMoveX(InputAction.CallbackContext context);
-        void OnJump(InputAction.CallbackContext context);
+    }
+    public interface IXboxActions
+    {
+        void OnMoveX(InputAction.CallbackContext context);
     }
 }

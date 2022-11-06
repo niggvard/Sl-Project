@@ -13,15 +13,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "Jump",
-                    "type": "Button",
-                    "id": "2908872d-ae23-4fff-8272-ffc0f1d9addb",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -57,17 +48,56 @@
                     "action": "MoveX",
                     "isComposite": false,
                     "isPartOfComposite": true
-                },
+                }
+            ]
+        },
+        {
+            "name": "Xbox",
+            "id": "23e4ab36-bd2c-4329-b5fc-d44cbc77e01a",
+            "actions": [
                 {
-                    "name": "",
-                    "id": "2dff8119-04c5-4add-b1b6-c22df4f29464",
-                    "path": "<Keyboard>/space",
+                    "name": "MoveX",
+                    "type": "Value",
+                    "id": "8f2cf601-8860-4007-b836-bfe8609d65e5",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "1D Axis",
+                    "id": "7180179a-5cb6-4896-b23f-dbc42412bcd4",
+                    "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Jump",
-                    "isComposite": false,
+                    "action": "MoveX",
+                    "isComposite": true,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "767dfc37-befa-4205-b524-9b4c2fb068d4",
+                    "path": "<XInputController>/leftStick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveX",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "58c344a8-85c8-4f59-b198-53b68d9a7260",
+                    "path": "<XInputController>/leftStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveX",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }

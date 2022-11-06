@@ -18,8 +18,10 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        short x = (short)input.PC.MoveX.ReadValue<float>(); //reads the MoveX axis values to implement them in move formula 
-        short moveXform = (short)(x * speed * Time.fixedDeltaTime);
+        short xPc = (short)input.PC.MoveX.ReadValue<float>(); //reads the MoveX axis values to implement them in move formula for pc
+        short xXbox = (short)input.Xbox.MoveX.ReadValue<float>();
+
+        short moveXform = (short)(Mathf.Clamp(xPc + xXbox, -1, 1) * speed * Time.fixedDeltaTime);
 
         playerBody.velocity = new Vector2(moveXform, playerBody.velocity.y); //move formula
 
