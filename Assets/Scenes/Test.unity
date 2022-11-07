@@ -1958,6 +1958,10 @@ PrefabInstance:
       propertyPath: smooth.m_Curve.Array.data[1].tangentMode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3238024554822040985, guid: e8cf3334e8de59d47a32210c013b52f3, type: 3}
+      propertyPath: field of view
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 3238024554822040986, guid: e8cf3334e8de59d47a32210c013b52f3, type: 3}
       propertyPath: m_Name
       value: Main Camera
