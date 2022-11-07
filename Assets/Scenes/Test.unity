@@ -1297,6 +1297,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1412151496 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3238024554822040986, guid: e8cf3334e8de59d47a32210c013b52f3, type: 3}
+  m_PrefabInstance: {fileID: 3238024555202954726}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1460909542
 GameObject:
   m_ObjectHideFlags: 0
@@ -1902,9 +1907,57 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3238024554822040935, guid: e8cf3334e8de59d47a32210c013b52f3, type: 3}
+      propertyPath: camObj
+      value: 
+      objectReference: {fileID: 1412151496}
+    - target: {fileID: 3238024554822040935, guid: e8cf3334e8de59d47a32210c013b52f3, type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 1963396035}
+    - target: {fileID: 3238024554822040935, guid: e8cf3334e8de59d47a32210c013b52f3, type: 3}
+      propertyPath: smooth.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3238024554822040935, guid: e8cf3334e8de59d47a32210c013b52f3, type: 3}
+      propertyPath: smooth.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3238024554822040935, guid: e8cf3334e8de59d47a32210c013b52f3, type: 3}
+      propertyPath: smooth.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3238024554822040935, guid: e8cf3334e8de59d47a32210c013b52f3, type: 3}
+      propertyPath: smooth.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3238024554822040935, guid: e8cf3334e8de59d47a32210c013b52f3, type: 3}
+      propertyPath: smooth.m_Curve.Array.data[0].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3238024554822040935, guid: e8cf3334e8de59d47a32210c013b52f3, type: 3}
+      propertyPath: smooth.m_Curve.Array.data[1].inSlope
+      value: -0.009930259
+      objectReference: {fileID: 0}
+    - target: {fileID: 3238024554822040935, guid: e8cf3334e8de59d47a32210c013b52f3, type: 3}
+      propertyPath: smooth.m_Curve.Array.data[0].outSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3238024554822040935, guid: e8cf3334e8de59d47a32210c013b52f3, type: 3}
+      propertyPath: smooth.m_Curve.Array.data[1].inWeight
+      value: 0.23750001
+      objectReference: {fileID: 0}
+    - target: {fileID: 3238024554822040935, guid: e8cf3334e8de59d47a32210c013b52f3, type: 3}
+      propertyPath: smooth.m_Curve.Array.data[1].outSlope
+      value: -0.009930259
+      objectReference: {fileID: 0}
+    - target: {fileID: 3238024554822040935, guid: e8cf3334e8de59d47a32210c013b52f3, type: 3}
+      propertyPath: smooth.m_Curve.Array.data[0].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3238024554822040935, guid: e8cf3334e8de59d47a32210c013b52f3, type: 3}
+      propertyPath: smooth.m_Curve.Array.data[1].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3238024554822040986, guid: e8cf3334e8de59d47a32210c013b52f3, type: 3}
       propertyPath: m_Name
       value: Main Camera
