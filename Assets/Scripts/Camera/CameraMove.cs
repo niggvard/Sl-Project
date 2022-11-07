@@ -4,7 +4,6 @@ public class CameraMove : MonoBehaviour
 {
     [SerializeField] private Transform target;
     [SerializeField] private float smoothSpeed;
-    [SerializeField] private AnimationCurve smooth; // animation curve lerp factor
     new private Transform camera;
     private Camera cam;
     private bool isLocked = false;
@@ -19,7 +18,6 @@ public class CameraMove : MonoBehaviour
     private void LateUpdate()
     {
         if (isLocked) return;
-        SetCameraSettings(camAngle : Mathf.Lerp(GetSettings().camAngle, 14, smooth.Evaluate(0.05f)), fov : Mathf.Lerp(GetSettings().fov, 25, smooth.Evaluate(0.05f))); 
         camera.position = new Vector3(Vector3.SmoothDamp(camera.transform.position, target.transform.position, ref velocity, smoothSpeed).x, camera.position.y, camera.position.z);
     }
 
