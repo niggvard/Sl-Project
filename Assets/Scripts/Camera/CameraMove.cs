@@ -14,20 +14,27 @@ public class CameraMove : MonoBehaviour
         cam = GetComponent<Camera>();
     }
 
-    Vector3 velocity = Vector3.zero;
+    Vector3 velocity3 = Vector3.zero;
     private void LateUpdate()
     {
         if (isLocked) return;
-        camera.position = new Vector3(Vector3.SmoothDamp(camera.transform.position, target.transform.position, ref velocity, smoothSpeed).x, camera.position.y, camera.position.z);
+        camera.position = new Vector3(Vector3.SmoothDamp(camera.transform.position, target.transform.position, ref velocity3, smoothSpeed).x, camera.position.y, -10);
     }
 
     /// <summary> Change setting for camera. </summary>
     public void SetCameraSettings(float fov = -1, bool lockMode = false, float posX = 0, float posY = 0, float camAngle = 0)
     {
-        if (fov != -1) cam.fieldOfView = fov;
-        if (posX != 0) camera.position = new Vector2(posX, camera.position.y);
-        if (posY != 0) camera.position = new Vector2(camera.position.x, posY);
-        if (camAngle != 0) camera.rotation = Quaternion.Euler(0, 0, camAngle);
+        if (fov != -1) cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, fov, 0.05f);
+
+        Vector3 posCurrent = new Vector3(camera.position.x, camera.position.y, -10);
+        Vector3 posNew = new Vector3(posX, posY, -10);
+
+        if (posX != 0 || posY != 0) camera.transform.position = Vector3.Lerp(posCurrent, posNew, 0.05f);
+
+        Quaternion rotCurrent = Quaternion.Euler(0, 0, camera.rotation.eulerAngles.z);
+        Quaternion rotNew = Quaternion.Euler(0, 0, camAngle);
+
+        if (camAngle != 0) camera.rotation = Quaternion.Lerp(rotCurrent, rotNew, 0.05f);
 
         isLocked = lockMode;
     }
