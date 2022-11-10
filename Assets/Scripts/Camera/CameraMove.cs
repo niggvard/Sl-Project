@@ -4,7 +4,6 @@ public class CameraMove : MonoBehaviour
 {
     [SerializeField] private Transform target;
     [SerializeField] private float smoothSpeed;
-    [SerializeField] private float CamSmother = 0.5f; 
     new private Transform camera;
     private Camera cam;
     private bool isLocked = false;
@@ -23,19 +22,19 @@ public class CameraMove : MonoBehaviour
     }
 
     /// <summary> Change setting for camera. </summary>
-    public void SetCameraSettings(float fov = -1, bool lockMode = false, float posX = 0, float posY = 0, float camAngle = 0)
+    public void SetCameraSettings(float fov = -1, bool lockMode = false, float posX = 0, float posY = 0, float camAngle = 0, float CamSmoother = 0f)
     {
-        if (fov != -1) cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, fov, CamSmother * Time.deltaTime);
+        if (fov != -1) cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, fov, CamSmoother * Time.deltaTime);
 
         Vector3 posCurrent = new Vector3(camera.position.x, camera.position.y, -10);
         Vector3 posNew = new Vector3(posX, posY, -10);
 
-        if (posX != 0 || posY != 0) camera.transform.position = Vector3.Lerp(posCurrent, posNew, CamSmother * Time.deltaTime);
+        if (posX != 0 || posY != 0) camera.transform.position = Vector3.Lerp(posCurrent, posNew, CamSmoother * Time.deltaTime);
 
         Quaternion rotCurrent = Quaternion.Euler(0, 0, camera.rotation.eulerAngles.z);
         Quaternion rotNew = Quaternion.Euler(0, 0, camAngle);
 
-        if (camAngle != 0) camera.rotation = Quaternion.Lerp(rotCurrent, rotNew, CamSmother * Time.deltaTime);
+        if (camAngle != 0) camera.rotation = Quaternion.Lerp(rotCurrent, rotNew, CamSmoother * Time.deltaTime);
 
         isLocked = lockMode;
     }
