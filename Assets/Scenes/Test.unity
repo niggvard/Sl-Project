@@ -2173,6 +2173,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1963396035}
     - target: {fileID: 3238024554822040935, guid: e8cf3334e8de59d47a32210c013b52f3, type: 3}
+      propertyPath: CamSmother
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3238024554822040935, guid: e8cf3334e8de59d47a32210c013b52f3, type: 3}
       propertyPath: smooth.m_Curve.Array.size
       value: 2
       objectReference: {fileID: 0}
