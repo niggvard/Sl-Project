@@ -26,15 +26,9 @@ public class CameraMove : MonoBehaviour
     {
         if (fov != -1) cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, fov, CamSmoother * Time.deltaTime);
 
-        Vector3 posCurrent = new Vector3(camera.position.x, camera.position.y, -10);
-        Vector3 posNew = new Vector3(posX, posY, -10);
+        if (posX != 0 || posY != 0) camera.transform.position = Vector3.Lerp(transform.position, new Vector3(posX, posY, transform.position.z), CamSmoother * Time.deltaTime);
 
-        if (posX != 0 || posY != 0) camera.transform.position = Vector3.Lerp(posCurrent, posNew, CamSmoother * Time.deltaTime);
-
-        Quaternion rotCurrent = Quaternion.Euler(0, 0, camera.rotation.eulerAngles.z);
-        Quaternion rotNew = Quaternion.Euler(0, 0, camAngle);
-
-        if (camAngle != 0) camera.rotation = Quaternion.Lerp(rotCurrent, rotNew, CamSmoother * Time.deltaTime);
+        if (camAngle != 0) camera.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, camAngle), CamSmoother * Time.deltaTime);
 
         isLocked = lockMode;
     }
