@@ -7,31 +7,12 @@ public class Trigger : MonoBehaviour
     [SerializeField] private PlayerController pc;
     [SerializeField] private float cms;
     private bool active = false;
-    void OnTriggerEnter2D()
+    void OnTriggerStay2D()
     {
-        StartCoroutine(corutine());
+        cm.SetCameraSettings(lockMode: true, posX:0, posY:0, CamSmoother: 1);
     }
-    private void LateUpdate()
+    void OnTriggerExit2D()
     {
-        if (active)
-        {
-            cm.SetCameraSettings(50, true, 5, 0, 0, cms);
-            pc.isMoving = false;
-        }
-        else 
-        {
-            pc.isMoving = true;
-            cm.SetCameraSettings(32, false, 0, 0, 0, cms);
-        }
+        cm.SetCameraSettings(lockMode: false, posX: 0, posY: 0, CamSmoother: 1);
     }
-    IEnumerator corutine() 
-    {
-        active = true;
-
-        yield return new WaitForSeconds(3);
-
-        active = false;
-
-        yield return null;  
-    }   
 }
